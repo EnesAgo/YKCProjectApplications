@@ -127,7 +127,18 @@
 
                     var fileTitle = 'YKCProjectApplications'; // or 'my-unique-title'
 
-                    exportCSVFile(headers, contentData, fileTitle); // call the exportCSVFile() function to process the JSON and trigger the download
+                    const items = contentData.map((item) => ({
+                        name: item.name.split(",").join(" "),
+                        surname: item.surname.split(",").join(" "),
+                        class: item.class.split(",").join(" "),
+                        competition: item.competition.split(",").join(" "),
+                        mentor: item.mentor.split(",").join(" "),
+                        projectname: item.projectname.split(",").join(" ")
+                    }));
+
+                    console.log(items)
+
+                    exportCSVFile(headers, items, fileTitle); // call the exportCSVFile() function to process the JSON and trigger the download
 
                 })
                 .catch((error) => {
