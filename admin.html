@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script src="./firebase.js"></script>
+</head>
+<body>
+
+<a id="downloadAnchorElem" href="">Download></a>
+    <script>
+        try{
+            let arr=[]
+            db.collection("students")
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        // doc.data() is never undefined for query doc snapshots
+                        console.log(doc.id, " => ", doc.data());
+                        arr.push(doc.data())
+
+                    });
+                })
+                .then(() => {
+
+                    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(arr));
+                    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+                    dlAnchorElem.setAttribute("href",     dataStr     );
+                    dlAnchorElem.setAttribute("download", "scene.json");
+                    dlAnchorElem.click();
+                })
+                .catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+
+        const storageObj = {}
+
+    </script>
+</body>
+</html>
