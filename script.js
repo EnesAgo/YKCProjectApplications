@@ -19,7 +19,7 @@ myForm.addEventListener("submit", async (e) => {
             mentor: mentor.value,
             competition: competition.value,
             projectname: projectname.value,
-            textarea: textarea.value
+            // textarea: textarea.value
         })
         alert("successfully sent")
 
@@ -29,7 +29,7 @@ myForm.addEventListener("submit", async (e) => {
         mentor.value = ''
         competition.value = ''
         projectname.value = ''
-        textarea.value = ''
+        // textarea.value = ''
     }
     catch (e) {
         console.log(e)
